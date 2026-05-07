@@ -1,9 +1,8 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": ".vercel/output",
   "installCommand": "npm install --legacy-peer-deps",
   "env": {
     "NPM_CONFIG_LEGACY_PEER_DEPS": "true",
-    "VINXI_SERVER_ADAPTER": "vercel"
+    "NITRO_PRESET": "vercel"
   }
 }
