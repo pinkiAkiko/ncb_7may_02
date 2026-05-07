@@ -217,3 +217,30 @@
   border-left: 4px solid var(--color-saffron);
   padding-left: 1rem;
 }
+/*
+ * Custom Scrollbar - Thin & Light
+ * Making the global scrollbar subtle and premium.
+ */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(0.85 0.01 255 / 0.4);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.7 0.02 255 / 0.6);
+}
+
+/* Firefox support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(0.85 0.01 255 / 0.4) transparent;
+}

@@ -1,5 +1,6 @@
 import { Compass, Target, Eye, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const stats = [
   { label: "Established", value: "1986" },
@@ -15,8 +16,16 @@ const cards = [
 ];
 
 export function AboutAndMVM() {
+  const { ref, isRevealed } = useScrollReveal();
+
   return (
-    <section aria-labelledby="about-title" className="bg-background py-16">
+    <section 
+      ref={ref}
+      aria-labelledby="about-title" 
+      className={`bg-background py-16 transition-all duration-1000 ease-out transform ${
+        isRevealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+      }`}
+    >
       <div className="mx-auto max-w-7xl px-4 grid lg:grid-cols-5 gap-12 lg:gap-24">
         <div className="lg:col-span-3">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-saffron">

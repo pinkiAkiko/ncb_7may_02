@@ -43,9 +43,19 @@ function ItemRow({ item }: { item: (typeof items)[number] }) {
   );
 }
 
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+
 export function UpdatesAndEvents() {
+  const { ref, isRevealed } = useScrollReveal();
+
   return (
-    <section aria-labelledby="updates-title" className="bg-background py-16">
+    <section 
+      ref={ref}
+      aria-labelledby="updates-title" 
+      className={`bg-background py-16 transition-all duration-1000 ease-out transform ${
+        isRevealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+      }`}
+    >
       <div className="mx-auto max-w-7xl px-4 grid lg:grid-cols-[1.2fr_1fr] gap-10 items-stretch">
         <div className="min-w-0 flex flex-col h-full">
           <h2 id="updates-title" className="text-3xl md:text-4xl font-bold text-navy">

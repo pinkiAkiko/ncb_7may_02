@@ -27,9 +27,19 @@ const socials = [
   { icon: Youtube, label: "YouTube" },
 ];
 
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+
 export function MediaAndSocial() {
+  const { ref, isRevealed } = useScrollReveal();
+
   return (
-    <section aria-labelledby="media-title" className="bg-background py-16">
+    <section 
+      ref={ref}
+      aria-labelledby="media-title" 
+      className={`bg-background py-16 transition-all duration-1000 ease-out transform ${
+        isRevealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+      }`}
+    >
       <div className="mx-auto max-w-7xl px-4 grid lg:grid-cols-[2fr_1fr] gap-8 lg:items-stretch">
         <div className="min-w-0">
           <h2 id="media-title" className="text-3xl md:text-4xl font-bold text-navy">
