@@ -91,7 +91,7 @@ export function MediaAndSocial() {
               ))}
             </ul>
           </div>
-          <div className="bg-card border border-border p-6 flex-1 flex flex-col min-h-0">
+          <div className="bg-card border border-border p-6 flex flex-col h-[285px]">
             <h3 className="text-base font-bold uppercase tracking-wider text-saffron shrink-0">Latest Posts</h3>
             <ul className="mt-4 space-y-4 flex-1 min-h-0 overflow-y-auto pr-2 custom-scrollbar">
               {[

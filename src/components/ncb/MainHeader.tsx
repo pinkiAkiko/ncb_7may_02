@@ -88,7 +88,7 @@ import { ChevronDown } from "lucide-react";
 export function MainHeader() {
   return (
     <header className="bg-card border-b border-border sticky top-0 z-40 shadow-sm">
-      <div className="mx-auto max-w-7xl px-4 py-5 flex items-center gap-4">
+      <div className="mx-auto max-w-7xl px-4 py-3 flex items-center gap-4">
         <div className="flex items-center gap-3 shrink-0">
           <img src={mosjeLogo} alt="Ministry of Social Justice and Empowerment" className="h-14 sm:h-16 w-auto" />
         </div>
@@ -144,8 +144,8 @@ export function MainHeader() {
                         <AccordionContent>
                           <ul className="pl-4 space-y-1 pb-3 border-l-2 border-saffron/20 ml-1">
                             {item.items.map((sub, sidx) => (
-                              <li 
-                                key={sidx} 
+                              <li
+                                key={sidx}
                                 className="animate-in fade-in slide-in-from-left-2 duration-500 fill-mode-both"
                                 style={{ animationDelay: `${sidx * 60}ms` }}
                               >
@@ -184,15 +184,15 @@ export function MainHeader() {
                       {item.title}
                       <ChevronDown className="size-3 opacity-60 transition-transform duration-300 ease-in-out group-data-[state=open]:rotate-180" />
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent 
+                    <DropdownMenuContent
                       className="w-[280px] p-2 bg-white text-navy border-x border-b border-border shadow-2xl rounded-none animate-in fade-in slide-in-from-top-2 duration-300 ease-in-out z-50"
                       align="start"
                       sideOffset={0}
                     >
                       <ul className="space-y-0.5">
                         {item.items.map((sub, sidx) => (
-                          <li 
-                            key={sidx} 
+                          <li
+                            key={sidx}
                             className="animate-in fade-in slide-in-from-top-1 duration-700 fill-mode-both"
                             style={{ animationDelay: `${sidx * 60}ms` }}
                           >
