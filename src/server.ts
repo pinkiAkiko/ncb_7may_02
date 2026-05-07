@@ -66,10 +66,12 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
   return brandedErrorResponse();
 }
 
-export default {
+const handler = {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
       const handler = await getServerEntry();
+      // Most adapters (Vercel, Node, etc.) only pass request. 
+      // Cloudflare passes env and ctx as well.
       const response = await handler.fetch(request, env, ctx);
       return await normalizeCatastrophicSsrResponse(response);
     } catch (error) {
@@ -78,3 +80,6 @@ export default {
     }
   },
 };
+
+export default handler;
+
