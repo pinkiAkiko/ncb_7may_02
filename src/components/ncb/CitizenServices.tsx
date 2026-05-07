@@ -35,10 +35,10 @@ export function CitizenServices() {
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <Button asChild className="bg-navy text-navy-foreground hover:bg-navy-deep font-semibold rounded-none">
+            <Button asChild className="bg-navy text-navy-foreground hover:bg-navy-deep font-semibold rounded-none transition-all duration-300">
               <a href="tel:1933"><Phone className="size-4" /> Call 1933</a>
             </Button>
-            <Button className="bg-saffron text-saffron-foreground hover:bg-saffron/90 font-semibold rounded-none">
+            <Button className="bg-saffron text-saffron-foreground hover:bg-saffron/90 font-semibold rounded-none transition-all duration-300">
               <ShieldAlert className="size-4" /> Submit Tip Online
             </Button>
           </div>
@@ -51,10 +51,10 @@ export function CitizenServices() {
               <li key={label}>
                 <a
                   href="#"
-                  className="px-4 py-5 flex flex-col items-center text-center gap-2 hover:bg-navy hover:text-navy-foreground transition-colors h-full group"
+                  className="px-4 py-5 flex flex-col items-center text-center gap-2 hover:bg-navy hover:text-navy-foreground transition-all duration-300 h-full group"
                 >
-                  <Icon className="size-6 text-navy group-hover:text-saffron" aria-hidden strokeWidth={1.5} />
-                  <span className="text-xs md:text-sm font-medium leading-tight">
+                  <Icon className="size-6 text-navy group-hover:text-saffron transition-colors duration-300" aria-hidden strokeWidth={1.5} />
+                  <span className="text-xs md:text-sm font-medium leading-tight transition-colors duration-300">
                     {label}
                   </span>
                 </a>

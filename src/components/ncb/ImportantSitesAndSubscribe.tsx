@@ -1,45 +1,58 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Building2, Phone, BookOpen, Smartphone, Globe, Database, Users2,
-  HeartPulse, Landmark, Scale,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
+
+import imgManas from "@/assets/link-img/MANAS_LogoE.jpeg";
+import imgPmnrf from "@/assets/link-img/PMNRF.png";
+import imgDataGov from "@/assets/link-img/data-gov.png";
+import imgGo from "@/assets/link-img/go.png";
+import imgIig from "@/assets/link-img/iig.png";
+import imgIndiaGov from "@/assets/link-img/india-gov.png";
+import imgMyGov from "@/assets/link-img/mygov.png";
+import imgNidaan from "@/assets/link-img/niddan.png";
+import imgSwachBharat from "@/assets/link-img/swach-bharat.png";
+import imgUmang from "@/assets/link-img/umang.png";
 
 const sites = [
-  { name: "MANAS", icon: Phone },
-  { name: "NIDAAN", icon: BookOpen },
-  { name: "NCORD", icon: Users2 },
-  { name: "UMANG", icon: Smartphone },
-  { name: "MyGov", icon: Landmark },
-  { name: "India.gov.in", icon: Globe },
-  { name: "Data.gov.in", icon: Database },
-  { name: "UNODC", icon: Scale },
-  { name: "MoSJE", icon: Building2 },
-  { name: "Drug Rehab Centres", icon: HeartPulse },
+  { name: "MANAS", img: imgManas },
+  { name: "NIDAAN", img: imgNidaan },
+  { name: "UMANG", img: imgUmang },
+  { name: "MyGov", img: imgMyGov },
+  { name: "India.gov.in", img: imgIndiaGov },
+  { name: "Data.gov.in", img: imgDataGov },
+  { name: "PMNRF", img: imgPmnrf },
+  { name: "Swachh Bharat", img: imgSwachBharat },
+  { name: "Incredible India", img: imgIig },
+  { name: "GOI", img: imgGo },
 ];
 
 export function ImportantSitesAndSubscribe() {
   return (
     <section aria-labelledby="sites-title" className="bg-soft-gray py-16 border-y border-border">
       <div className="mx-auto max-w-7xl px-4 grid lg:grid-cols-[2fr_1fr] gap-8 lg:items-start">
-        <div className="flex flex-col">
+        <div className="flex flex-col min-w-0">
           <h2 id="sites-title" className="text-3xl md:text-4xl font-bold text-navy">
             Important Websites
           </h2>
           <div className="mt-2 h-1 w-12 bg-saffron" aria-hidden />
-          <p className="text-sm text-muted-foreground mt-3">
-            Related government portals and partner organisations.
-          </p>
+          <div className="mt-3 flex items-center justify-between gap-4">
+            <p className="text-sm text-muted-foreground">
+              Related government portals and partner organisations.
+            </p>
+            <Button variant="link" className="p-0 h-auto text-saffron hover:text-saffron/90 text-sm font-semibold shrink-0">
+              View All <ArrowRight className="size-4 ml-1" />
+            </Button>
+          </div>
           <ul className="mt-5 hairline-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 bg-card">
-            {sites.map(({ name, icon: Icon }) => (
-              <li key={name} className="hover:bg-navy transition-colors group">
+            {sites.map(({ name, img }) => (
+              <li key={name} className="hover:bg-navy/5 transition-colors group">
                 <a
                   href="#"
-                  className="w-full h-24 flex flex-col items-center justify-center gap-1 px-2 text-center"
+                  className="w-full h-24 flex flex-col items-center justify-center gap-2 p-2 text-center"
                 >
-                  <Icon className="size-4 text-navy group-hover:text-saffron" aria-hidden strokeWidth={1.5} />
-                  <span className="min-h-[2.4em] flex items-center justify-center text-[13px] font-semibold leading-tight text-navy group-hover:text-navy-foreground line-clamp-2">
+                  <img src={img} alt={name} loading="lazy" className="h-10 w-auto object-contain group-hover:scale-110 transition-transform duration-300" />
+                  <span className="text-[11px] font-semibold leading-tight text-navy group-hover:text-saffron line-clamp-1">
                     {name}
                   </span>
                 </a>
@@ -48,7 +61,7 @@ export function ImportantSitesAndSubscribe() {
           </ul>
         </div>
 
-        <aside className="bg-navy text-navy-foreground p-5 flex flex-col">
+        <aside className="bg-navy text-navy-foreground p-5 flex flex-col min-w-0">
           <h2 className="text-base md:text-lg font-bold">Subscribe to Updates</h2>
           <div className="mt-2 h-1 w-10 bg-saffron" aria-hidden />
           <p className="text-sm text-navy-foreground/80 mt-2">

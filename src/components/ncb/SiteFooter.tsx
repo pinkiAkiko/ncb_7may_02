@@ -1,10 +1,10 @@
 import ncbEmblem from "@/assets/ncb-emblem.png";
 
 const cols = [
-  { title: "About NCB", items: ["Who We Are", "Origin & Evolution", "Mission, Vision & Motto", "Organisation Structure", "Our Offices"] },
-  { title: "Legal", items: ["Acts & Rules", "Notifications", "Treaties", "Important Judgements", "Publications"] },
-  { title: "Citizen Services", items: ["Submit Tip", "MANAS", "RTI", "Vigilance", "Tenders", "Join NCB", "Public Grievance"] },
-  { title: "Resources", items: ["NIDAAN", "NCORD", "Drug Rehab Centres", "Awareness", "E-Pledge", "Forms"] },
+  { title: "About NCB", items: ["Who We Are", "Origin & Evolution", "Mission, Vision & Motto", "Hierarchy & Structure", "Our Offices", "Our Partners"] },
+  { title: "Legal & Notifications", items: ["Notifications", "Important Judgements", "Acts & Rules", "Treaties", "Publications", "NDPS Court Cases"] },
+  { title: "Media & News", items: ["Latest News & Events", "Important Seizures", "Photo Gallery", "Video Gallery", "Press Releases", "Former Heads"] },
+  { title: "Citizen Services", items: ["Submit Tip", "MANAS 1933", "RTI & Vigilance", "E-Pledge", "Tenders", "Join NCB", "Public Grievance"] },
 ];
 
 const bottomLinks = ["Website Policies", "Privacy Policy", "Accessibility Statement", "Sitemap", "Help", "Feedback"];

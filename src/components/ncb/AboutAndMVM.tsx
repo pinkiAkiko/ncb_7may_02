@@ -56,12 +56,12 @@ export function AboutAndMVM() {
 
         <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 lg:divide-y lg:divide-x-0 sm:divide-x divide-border lg:border-l-2 lg:border-saffron lg:pl-8">
           {cards.map(({ icon: Icon, label, text }) => (
-            <article key={label} className="px-4 py-5 lg:px-0 lg:py-6 first:pt-0 last:pb-0">
-              <Icon className="size-7 text-navy" aria-hidden strokeWidth={1.5} />
+            <article key={label} className="px-4 py-5 lg:px-0 lg:py-6 first:pt-0 last:pb-0 group">
+              <Icon className="size-7 text-navy transition-transform duration-500 ease-out group-hover:scale-[1.15] group-hover:text-saffron origin-left" aria-hidden strokeWidth={1.5} />
               <h3 className="mt-3 text-[11px] font-bold uppercase tracking-[0.18em] text-saffron">
                 {label}
               </h3>
-              <p className="mt-1.5 text-base font-semibold text-navy leading-snug">{text}</p>
+              <p className="mt-1.5 text-base font-semibold text-navy leading-snug transition-colors duration-500">{text}</p>
             </article>
           ))}
         </div>

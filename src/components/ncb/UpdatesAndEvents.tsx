@@ -16,24 +16,27 @@ const items = [
 
 const tabs = ["All", "Press Releases", "Recruitment", "Tenders", "Advisories", "Circulars", "MoUs"];
 
-const events = [
+const baseEvents = [
   { cat: "Awareness", date: "26 June", title: "International Day Against Drug Abuse Awareness Programme", location: "All Zonal Offices", img: event1 },
   { cat: "Training", date: "14 June", title: "Capacity Building Workshop for Drug Law Enforcement Officers", location: "NCB Academy", img: event2 },
   { cat: "Coordination", date: "05 June", title: "Inter-agency Coordination Meeting on Drug Law Enforcement", location: "New Delhi", img: event3 },
 ];
 
+// Duplicate events to ensure the container has enough content to scroll
+const events = [...baseEvents, ...baseEvents.map(e => ({ ...e, title: e.title + " (Recent)" }))];
+
 function ItemRow({ item }: { item: (typeof items)[number] }) {
   return (
-    <article className="py-4 border-b border-border/60 last:border-b-0">
+    <article className="py-4 border-b border-border/60 last:border-b-0 hover:bg-muted/50 transition-colors px-2 rounded-sm group">
       <div className="flex items-center gap-2 flex-wrap">
-        <span className="text-[9px] uppercase tracking-wider border border-navy/30 text-navy/80 px-1.5 py-0.5">
+        <span className="text-[9px] uppercase tracking-wider border border-navy/30 text-navy/80 px-1.5 py-0.5 group-hover:border-saffron group-hover:text-saffron transition-colors">
           {item.cat}
         </span>
         <span className="text-[11px] text-muted-foreground inline-flex items-center gap-1">
           <Calendar className="size-3" aria-hidden /> {item.date}
         </span>
       </div>
-      <h3 className="mt-1.5 text-[15px] font-semibold text-navy hover:text-saffron leading-relaxed">
+      <h3 className="mt-1.5 text-[15px] font-semibold text-navy group-hover:text-saffron transition-colors leading-relaxed">
         <a href="#">{item.title}</a>
       </h3>
     </article>
@@ -43,8 +46,8 @@ function ItemRow({ item }: { item: (typeof items)[number] }) {
 export function UpdatesAndEvents() {
   return (
     <section aria-labelledby="updates-title" className="bg-background py-16">
-      <div className="mx-auto max-w-7xl px-4 grid lg:grid-cols-[55%_45%] gap-10">
-        <div>
+      <div className="mx-auto max-w-7xl px-4 grid lg:grid-cols-[1.2fr_1fr] gap-10 items-stretch">
+        <div className="min-w-0 flex flex-col h-full">
           <h2 id="updates-title" className="text-3xl md:text-4xl font-bold text-navy">
             What&apos;s New
           </h2>
@@ -62,29 +65,43 @@ export function UpdatesAndEvents() {
             </TabsList>
             {tabs.map((t) => {
               const filtered = t === "All" ? items : items.filter((i) => i.tab === t);
+              // For auto-scroll to loop seamlessly, we need enough content. We'll show all items by removing the .slice() and duplicate them for the loop effect.
+              const scrollItems = filtered.length > 0 ? [...filtered, ...filtered] : [];
+              
               return (
                 <TabsContent key={t} value={t} className="mt-2">
-                  <div className="bg-card border-t border-border px-1">
-                    {filtered.length ? (
-                      filtered.slice(0, 5).map((it, i) => <ItemRow key={i} item={it} />)
+                  <div className="bg-card border-t border-border relative overflow-hidden h-[300px] group">
+                    {scrollItems.length > 0 ? (
+                      <div className="absolute inset-x-0 top-0 auto-scroll-container group-hover:[animation-play-state:paused]">
+                        {scrollItems.map((it, i) => <ItemRow key={i} item={it} />)}
+                      </div>
                     ) : (
-                      <p className="py-8 text-center text-sm text-muted-foreground">
-                        No items in this category.
-                      </p>
+                      <div className="px-1 h-full">
+                        <p className="py-8 text-center text-sm text-muted-foreground">
+                          No items in this category.
+                        </p>
+                      </div>
+                    )}
+                    {/* Gradient overlays to mask the scrolling edges */}
+                    {scrollItems.length > 0 && (
+                      <>
+                        <div className="absolute top-0 inset-x-0 h-6 bg-gradient-to-b from-card to-transparent pointer-events-none z-10" />
+                        <div className="absolute bottom-0 inset-x-0 h-6 bg-gradient-to-t from-card to-transparent pointer-events-none z-10" />
+                      </>
                     )}
                   </div>
                 </TabsContent>
               );
             })}
           </Tabs>
-          <div className="mt-4">
-            <Button variant="outline" className="border-navy text-navy hover:bg-navy hover:text-navy-foreground rounded-none">
-              View All Updates <ArrowRight className="size-4" />
+          <div className="mt-auto pt-4">
+            <Button variant="outline" className="border-navy text-navy hover:bg-navy hover:text-navy-foreground rounded-none transition-colors duration-300">
+              View All Updates <ArrowRight className="size-4 ml-2" />
             </Button>
           </div>
         </div>
 
-        <aside aria-labelledby="events-title">
+        <aside aria-labelledby="events-title" className="min-w-0 flex flex-col h-full">
           <h2 id="events-title" className="text-3xl md:text-4xl font-bold text-navy">
             Recent Events
           </h2>
@@ -92,13 +109,13 @@ export function UpdatesAndEvents() {
           <p className="text-sm text-muted-foreground mt-3">
             Programmes, workshops and coordination meetings.
           </p>
-          <div className="mt-5 space-y-4">
-            {events.map((e) => {
+          <div className="mt-5 space-y-4 h-[344px] overflow-y-auto pr-2 custom-scrollbar">
+            {events.map((e, idx) => {
               const [day, mon] = e.date.split(" ");
               return (
                 <article
-                  key={e.title}
-                  className="bg-card border border-border hover:shadow-md transition-shadow flex"
+                  key={idx}
+                  className="bg-card border border-border hover:shadow-md transition-shadow flex shrink-0"
                 >
                   <img src={e.img} alt="" className="w-36 sm:w-40 h-auto object-cover shrink-0" loading="lazy" />
                   <div className="flex-1 p-5 flex gap-3 min-w-0">
@@ -110,7 +127,7 @@ export function UpdatesAndEvents() {
                       <span className="text-[10px] font-bold uppercase tracking-wider text-saffron">
                         {e.cat}
                       </span>
-                      <h3 className="text-base font-semibold text-navy mt-0.5 leading-snug">
+                      <h3 className="text-base font-semibold text-navy mt-0.5 leading-snug truncate whitespace-normal line-clamp-2">
                         {e.title}
                       </h3>
                       <p className="text-xs text-muted-foreground mt-1 inline-flex items-center gap-1">
@@ -122,13 +139,40 @@ export function UpdatesAndEvents() {
               );
             })}
           </div>
-          <div className="mt-4">
-            <Button variant="link" className="px-0 text-navy">
-              View All Events <ArrowRight className="size-4" />
+          <div className="mt-auto pt-4">
+            <Button variant="outline" className="border-navy text-navy hover:bg-navy hover:text-navy-foreground rounded-none transition-colors duration-300">
+              View All Events <ArrowRight className="size-4 ml-2" />
             </Button>
           </div>
         </aside>
       </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes scrollUp {
+          from { transform: translateY(0); }
+          to { transform: translateY(-50%); }
+        }
+        .auto-scroll-container {
+          animation: scrollUp 25s linear infinite;
+        }
+        .auto-scroll-container:hover {
+          animation-play-state: paused;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 5px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: hsl(var(--muted)); 
+          border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: hsl(var(--muted-foreground) / 0.3); 
+          border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: hsl(var(--muted-foreground) / 0.5); 
+        }
+      `}} />
     </section>
   );
 }
